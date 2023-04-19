@@ -1,0 +1,27 @@
+.modal-container {
+  position: absolute;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 25px 10px;
+  border-radius: 0.5rem;
+  max-height: 520px;
+  overflow: auto;
+}
+
+.modal-container-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width:720px) {
+  .modal-container {
+    width:75%;
+  }
+}

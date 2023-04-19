@@ -4,11 +4,17 @@ import Map from "../../components/Map/Map";
 import Header from "../../components/Header/Header";
 import { ClickEventValue, Coords } from "google-map-react";
 import FirstStepsModal from "../../components/FirstStepsModal/FirstStepsModal";
+import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
+import EventFormModal from "../../components/EventFormModal/EventFormModal";
 
 function MapScreen() {
   const [userLocation, setUserLocation] = useState<Coords | null>(null);
   const [showFirstSteps, setShowFirstSteps] = useState<boolean>(true);
+  const [showEventForm, setShowEventForm] = useState<boolean>(false);
+  const [showAddMarkerConfirmation, setShowAddMarkerConfirmation] =
+    useState<boolean>(false);
   const [markersPosition, setMarkersPosition] = useState<Array<Coords>>([]);
+  const [selectedPosition, setSelectedPosition] = useState<Coords>();
 
   const getUserLocation = () => {
     if (navigator?.geolocation) {
@@ -23,10 +29,20 @@ function MapScreen() {
   };
 
   const handleMapClick = (event: ClickEventValue) => {
-    setMarkersPosition([
-      ...markersPosition,
-      { lng: event.lng, lat: event.lat },
-    ]);
+    setShowAddMarkerConfirmation(true);
+    setSelectedPosition({ lng: event.lng, lat: event.lat });
+  };
+
+  const handleConfirmAddMarker = () => {
+    setShowEventForm(true);
+    setShowAddMarkerConfirmation(false);
+
+    // if (selectedPosition) {
+    //   setMarkersPosition([
+    //     ...markersPosition,
+    //     { lng: selectedPosition.lng, lat: selectedPosition.lat },
+    //   ]);
+    // }
   };
 
   useEffect(() => {
@@ -47,6 +63,20 @@ function MapScreen() {
       <FirstStepsModal
         modalIsOpen={showFirstSteps}
         closeModal={() => setShowFirstSteps(false)}
+      />
+      <ConfirmationModal
+        modalIsOpen={showAddMarkerConfirmation}
+        closeModal={() => setShowAddMarkerConfirmation(false)}
+        title="Cadastrar Novo Evento?"
+        description="Tem certeza que deseja cadastrar um novo evento na região selecionada?"
+        confirmLabel="Confirmar"
+        handleConfirm={() => handleConfirmAddMarker()}
+        handleCancel={() => setShowAddMarkerConfirmation(false)}
+        cancelLabel="Cancelar"
+      />
+      <EventFormModal
+        modalIsOpen={showEventForm}
+        closeModal={() => setShowEventForm(false)}
       />
     </div>
   );

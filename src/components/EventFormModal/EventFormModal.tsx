@@ -1,8 +1,8 @@
 import React from "react";
-import "./FirstStepsModal.css";
+import "./EventFormModal.css";
 import ModalContainer from "../ModalContainer/ModalContainer";
 
-interface IFirstStepsModal {
+interface IEventFormModal {
   modalIsOpen: boolean;
   closeModal: (
     event: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
@@ -10,11 +10,11 @@ interface IFirstStepsModal {
   customClassName?: string;
 }
 
-const FirstStepsModal = ({
+const EventFormModal = ({
   modalIsOpen,
   closeModal,
   customClassName,
-}: IFirstStepsModal) => (
+}: IEventFormModal) => (
   <ModalContainer
     modalIsOpen={modalIsOpen}
     closeModal={closeModal}
@@ -46,4 +46,4 @@ const FirstStepsModal = ({
   </ModalContainer>
 );
 
-export default FirstStepsModal;
+export default EventFormModal;
