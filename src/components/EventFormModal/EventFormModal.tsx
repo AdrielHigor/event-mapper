@@ -1,6 +1,8 @@
 import React from "react";
 import "./EventFormModal.css";
 import ModalContainer from "../ModalContainer/ModalContainer";
+import FormTextInput from "../FormTextInput/FormTextInput";
+import { IEventForm } from "../../utils/interfaces/base";
 
 interface IEventFormModal {
   modalIsOpen: boolean;
@@ -8,42 +10,78 @@ interface IEventFormModal {
     event: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
   ) => void;
   customClassName?: string;
+  title: string;
+  description: string;
+  saveButtonLabel: string;
+  cancelButtonLabel: string;
+  form?: IEventForm;
+  onFormChange: (e: IEventForm) => void;
 }
 
 const EventFormModal = ({
   modalIsOpen,
   closeModal,
   customClassName,
-}: IEventFormModal) => (
-  <ModalContainer
-    modalIsOpen={modalIsOpen}
-    closeModal={closeModal}
-    customClassName={customClassName}
-  >
-    <div className="firstSteps">
-      <div className="modalHeader">
-        <h2>Bem Vindo Ao Mapa! 🗺️</h2>
-        <p className="description">
-          📌Aqui você pode visualizar e cadastrar eventos em sua cidade ou no
-          mundo!
-        </p>
+  title,
+  description,
+  saveButtonLabel,
+  cancelButtonLabel,
+  form,
+  onFormChange,
+}: IEventFormModal) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedObj = { ...form };
+
+    console.log(e.target.id);
+    console.log(e.target.value);
+
+    onFormChange(updatedObj);
+  };
+
+  return (
+    <ModalContainer
+      modalIsOpen={modalIsOpen}
+      closeModal={closeModal}
+      customClassName={customClassName}
+    >
+      <div className="event-form">
+        <div className="modal-header">
+          <h2>{title}</h2>
+          <p className="description">{description}</p>
+        </div>
+        <div className="form">
+          <FormTextInput
+            onChange={handleChange}
+            id="eventName"
+            label="Nome do evento"
+          />
+          <FormTextInput
+            onChange={handleChange}
+            id="eventDescription"
+            label="Descrição do evento"
+          />
+          <FormTextInput
+            onChange={handleChange}
+            id="eventStartDate"
+            label="Data de início do evento"
+          />
+          <FormTextInput
+            onChange={handleChange}
+            id="eventEndDate"
+            label="Data de fim do evento"
+          />
+        </div>
+        <div className="options">
+          <button className="confirm-button" onClick={closeModal}>
+            {saveButtonLabel}
+          </button>
+          <button className="cancel-button" onClick={closeModal}>
+            {cancelButtonLabel}
+          </button>
+        </div>
       </div>
-      <div>
-        <p className="description">Como Faço Isso? É fácil!</p>
-        <p className="subTitle">Navegar</p>
-        <p>1 - Navegue pelo mapa e poderá ver eventos próximos de você.</p>
-        <p>2 - basta clicar em um marcador para ver os detalhes dos eventos.</p>
-        <p className="subTitle">Criar Evento</p>
-        <p>1 - Selecione uma localidade do seu gosto e cadastre seu evento;</p>
-        <p>2 - Basta clicar no mapa e um popup com formulário irá aparecer;</p>
-        <p>3 - Agora basta você preencher o formulário e postar os eventos.</p>
-      </div>
-      <button className="exitButton" onClick={closeModal}>
-        {" "}
-        Entendido!{" "}
-      </button>
-    </div>
-  </ModalContainer>
-);
+    </ModalContainer>
+  );
+};
 
 export default EventFormModal;

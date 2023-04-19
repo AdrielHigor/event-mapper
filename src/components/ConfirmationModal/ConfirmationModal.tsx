@@ -32,16 +32,16 @@ const ConfirmationModal = ({
     closeModal={closeModal}
     customClassName={customClassName}
   >
-    <div className="confirmationContainer">
-      <div className="modalHeader">
+    <div className="confirmation-container">
+      <div className="modal-header">
         <h2>{title}</h2>
         <p className="description">{description}</p>
       </div>
       <div className="options">
-        <button className="confirmButton" onClick={handleConfirm}>
+        <button className="confirm-button" onClick={handleConfirm}>
           {confirmLabel}
         </button>
-        <button className="cancelButton" onClick={handleCancel}>
+        <button className="cancel-button" onClick={handleCancel}>
           {cancelLabel}
         </button>
       </div>

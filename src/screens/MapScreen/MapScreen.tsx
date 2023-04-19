@@ -6,6 +6,7 @@ import { ClickEventValue, Coords } from "google-map-react";
 import FirstStepsModal from "../../components/FirstStepsModal/FirstStepsModal";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import EventFormModal from "../../components/EventFormModal/EventFormModal";
+import { IEventForm } from "../../utils/interfaces/base";
 
 function MapScreen() {
   const [userLocation, setUserLocation] = useState<Coords | null>(null);
@@ -15,6 +16,7 @@ function MapScreen() {
     useState<boolean>(false);
   const [markersPosition, setMarkersPosition] = useState<Array<Coords>>([]);
   const [selectedPosition, setSelectedPosition] = useState<Coords>();
+  const [eventForm, setEventForm] = useState<IEventForm | undefined>();
 
   const getUserLocation = () => {
     if (navigator?.geolocation) {
@@ -77,6 +79,12 @@ function MapScreen() {
       <EventFormModal
         modalIsOpen={showEventForm}
         closeModal={() => setShowEventForm(false)}
+        title="Cadastrar Evento"
+        description="Preencha o formulário abaixo para cadastrar seu evento."
+        saveButtonLabel="Salvar"
+        cancelButtonLabel="Cancelar"
+        form={eventForm}
+        onFormChange={(e) => console.log(e)}
       />
     </div>
   );

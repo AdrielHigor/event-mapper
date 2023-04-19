@@ -21,7 +21,7 @@ const FirstStepsModal = ({
     customClassName={customClassName}
   >
     <div className="firstSteps">
-      <div className="modalHeader">
+      <div className="modal-header">
         <h2>Bem Vindo Ao Mapa! 🗺️</h2>
         <p className="description">
           📌Aqui você pode visualizar e cadastrar eventos em sua cidade ou no

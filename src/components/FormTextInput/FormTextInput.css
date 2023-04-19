@@ -1,0 +1,29 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form-label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #808080;
+}
+
+.form-input {
+  border-width: 0px;
+  border-bottom-width: 2px;
+  border-color: #dedede;
+  outline: 0px;
+  padding: 5px 0px;
+}
+
+.form-input:focus {
+  border-width: 0px;
+  border-bottom-width: 2px;
+  border-color: #000;
+}
+
+.input-container:focus-within .form-label {
+  color: #000;
+}
