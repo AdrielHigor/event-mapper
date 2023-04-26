@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./EventFormModal.css";
 import ModalContainer from "../ModalContainer/ModalContainer";
-import FormTextInput from "../FormTextInput/FormTextInput";
-import { IEventForm } from "../../utils/interfaces/base";
+import FormInput from "../FormTextInput/FormInput";
+import {
+  DynamicObject,
+  IEventForm,
+  IEventFormValidation,
+} from "../../utils/interfaces/base";
 
 interface IEventFormModal {
   modalIsOpen: boolean;
@@ -15,7 +19,10 @@ interface IEventFormModal {
   saveButtonLabel: string;
   cancelButtonLabel: string;
   form?: IEventForm;
+  requiredFields?: Array<string>;
   onFormChange: (e: IEventForm) => void;
+  onSave: () => void;
+  onCancel: () => void;
 }
 
 const EventFormModal = ({
@@ -27,15 +34,48 @@ const EventFormModal = ({
   saveButtonLabel,
   cancelButtonLabel,
   form,
+  requiredFields,
   onFormChange,
+  onSave,
+  onCancel,
 }: IEventFormModal) => {
+  const [formValidFields, setFormValidFields] = useState<IEventFormValidation>({
+    name: true,
+    description: true,
+    startDateTime: true,
+    endDateTime: true,
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const updatedObj = { ...form };
-
-    console.log(e.target.id);
-    console.log(e.target.value);
-
+    const updatedObj: DynamicObject = { ...form };
+    updatedObj[e.target.id] = e.target.value;
     onFormChange(updatedObj);
+  };
+
+  const handleValidation = () => {
+    const validatedFields: DynamicObject = { ...formValidFields };
+    const formObj: DynamicObject = { ...form };
+    if (requiredFields) {
+      requiredFields.forEach((field) => {
+        if (!formObj[field] || formObj[field] === "") {
+          validatedFields[field] = false;
+        } else {
+          validatedFields[field] = true;
+        }
+      });
+
+      setFormValidFields(validatedFields);
+    }
+
+    handleSave(validatedFields);
+  };
+
+  const handleSave = (validatedFields: DynamicObject) => {
+    for (let field in validatedFields) {
+      if (validatedFields[field] === false) return;
+    }
+
+    onSave();
   };
 
   return (
@@ -50,32 +90,38 @@ const EventFormModal = ({
           <p className="description">{description}</p>
         </div>
         <div className="form">
-          <FormTextInput
+          <FormInput
             onChange={handleChange}
-            id="eventName"
-            label="Nome do evento"
+            id="name"
+            label="Nome do evento *"
+            isValid={formValidFields["name"]}
           />
-          <FormTextInput
+          <FormInput
             onChange={handleChange}
-            id="eventDescription"
-            label="Descrição do evento"
+            id="description"
+            label="Descrição do evento *"
+            isValid={formValidFields["description"]}
           />
-          <FormTextInput
+          <FormInput
             onChange={handleChange}
-            id="eventStartDate"
+            id="startDateTime"
             label="Data de início do evento"
+            inputType="datetime-local"
+            isValid={formValidFields["startDateTime"]}
           />
-          <FormTextInput
+          <FormInput
             onChange={handleChange}
-            id="eventEndDate"
+            id="endDateTime"
             label="Data de fim do evento"
+            inputType="datetime-local"
+            isValid={formValidFields["endDateTime"]}
           />
         </div>
         <div className="options">
-          <button className="confirm-button" onClick={closeModal}>
+          <button className="confirm-button" onClick={handleValidation}>
             {saveButtonLabel}
           </button>
-          <button className="cancel-button" onClick={closeModal}>
+          <button className="cancel-button" onClick={onCancel}>
             {cancelButtonLabel}
           </button>
         </div>

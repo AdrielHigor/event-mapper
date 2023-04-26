@@ -38,13 +38,23 @@ function MapScreen() {
   const handleConfirmAddMarker = () => {
     setShowEventForm(true);
     setShowAddMarkerConfirmation(false);
+  };
 
-    // if (selectedPosition) {
-    //   setMarkersPosition([
-    //     ...markersPosition,
-    //     { lng: selectedPosition.lng, lat: selectedPosition.lat },
-    //   ]);
-    // }
+  const handleSaveMarker = () => {
+    if (selectedPosition) {
+      setMarkersPosition([
+        ...markersPosition,
+        { lng: selectedPosition.lng, lat: selectedPosition.lat },
+      ]);
+    }
+
+    setEventForm({});
+    setShowEventForm(false);
+  };
+
+  const handleCancel = () => {
+    setEventForm({});
+    setShowEventForm(false);
   };
 
   useEffect(() => {
@@ -84,7 +94,10 @@ function MapScreen() {
         saveButtonLabel="Salvar"
         cancelButtonLabel="Cancelar"
         form={eventForm}
-        onFormChange={(e) => console.log(e)}
+        requiredFields={["name", "description"]}
+        onFormChange={(e) => setEventForm(e)}
+        onSave={() => handleSaveMarker()}
+        onCancel={() => handleCancel()}
       />
     </div>
   );

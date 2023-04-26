@@ -27,3 +27,16 @@
 .input-container:focus-within .form-label {
   color: #000;
 }
+
+.form-error-text {
+  font-size: 14px;
+  color: #f20000;
+}
+
+.form-input-error {
+  border-color: #f20000;
+}
+
+.form-label-error {
+  color: #f20000;
+}
