@@ -24,6 +24,8 @@ Este é um aplicativo de mapeamento de eventos que permite que usuários cadastr
 
 ## Como usar
 
+ATÇ: esta aplicação necessita do event-service (https://github.com/AdrielHigor/event-service) para funcionar corretamente.
+
 1. Permita que o aplicativo acesse a sua localização atual quando solicitado
 2. Clique em um ponto do mapa para cadastrar um novo evento
 3. Preencha o formulário de cadastro de eventos com as informações necessárias e clique em "Salvar"
