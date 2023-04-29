@@ -3,12 +3,13 @@ import "./Map.css";
 import GoogleMapReact from "google-map-react";
 import Marker from "../Marker/Marker";
 import constants from "../../utils/Constants";
+import { IEventResponse } from "../../utils/interfaces/base";
 
 interface IMap {
   location: GoogleMapReact.Coords;
   zoomLevel: number;
   handleMapClick?: (event: GoogleMapReact.ClickEventValue) => void;
-  markers?: Array<GoogleMapReact.Coords>;
+  markers?: Array<IEventResponse>;
 }
 
 const Map = ({ location, zoomLevel, handleMapClick, markers }: IMap) => (
@@ -23,9 +24,9 @@ const Map = ({ location, zoomLevel, handleMapClick, markers }: IMap) => (
       >
         {markers?.map((marker) => (
           <Marker
-            key={`${marker.lat}${marker.lng}`}
-            lat={marker.lat}
-            lng={marker.lng}
+            key={marker.id}
+            lat={marker.location.point.coordinates[1]}
+            lng={marker.location.point.coordinates[0]}
           />
         ))}
       </GoogleMapReact>

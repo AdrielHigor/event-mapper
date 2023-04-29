@@ -6,7 +6,12 @@ import { ClickEventValue, Coords } from "google-map-react";
 import FirstStepsModal from "../../components/FirstStepsModal/FirstStepsModal";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import EventFormModal from "../../components/EventFormModal/EventFormModal";
-import { IEventForm } from "../../utils/interfaces/base";
+import {
+  IEventForm,
+  IEventPost,
+  IEventResponse,
+} from "../../utils/interfaces/base";
+import { getAllEvents, postEvent } from "../../api/Event";
 
 function MapScreen() {
   const [userLocation, setUserLocation] = useState<Coords | null>(null);
@@ -14,7 +19,9 @@ function MapScreen() {
   const [showEventForm, setShowEventForm] = useState<boolean>(false);
   const [showAddMarkerConfirmation, setShowAddMarkerConfirmation] =
     useState<boolean>(false);
-  const [markersPosition, setMarkersPosition] = useState<Array<Coords>>([]);
+  const [markersPosition, setMarkersPosition] = useState<Array<IEventResponse>>(
+    []
+  );
   const [selectedPosition, setSelectedPosition] = useState<Coords>();
   const [eventForm, setEventForm] = useState<IEventForm | undefined>();
 
@@ -30,6 +37,11 @@ function MapScreen() {
     }
   };
 
+  const getEvents = async () => {
+    const events = await getAllEvents();
+    setMarkersPosition(events.data);
+  };
+
   const handleMapClick = (event: ClickEventValue) => {
     setShowAddMarkerConfirmation(true);
     setSelectedPosition({ lng: event.lng, lat: event.lat });
@@ -40,12 +52,21 @@ function MapScreen() {
     setShowAddMarkerConfirmation(false);
   };
 
-  const handleSaveMarker = () => {
-    if (selectedPosition) {
-      setMarkersPosition([
-        ...markersPosition,
-        { lng: selectedPosition.lng, lat: selectedPosition.lat },
-      ]);
+  const handleSaveMarker = async () => {
+    if (eventForm && selectedPosition) {
+      const objToSave: IEventPost = {
+        name: eventForm.name ?? "Default",
+        description: eventForm.description ?? "Default",
+        startDateTime: eventForm?.startDateTime,
+        endDateTime: eventForm?.endDateTime,
+        location: {
+          lat: selectedPosition.lat,
+          lng: selectedPosition.lng,
+        },
+      };
+
+      await postEvent(objToSave);
+      getEvents();
     }
 
     setEventForm({});
@@ -59,6 +80,7 @@ function MapScreen() {
 
   useEffect(() => {
     getUserLocation();
+    getEvents();
   }, []);
 
   return (
