@@ -7,5 +7,9 @@ export const getAllEvents = async () => {
 }
 
 export const postEvent = async (data: IEventPost): Promise<void> => {
-  await mainAPI.post('/event', data)
+  await mainAPI.post('/event', data);
+}
+
+export const deleteEvent = async (id: number): Promise<void> => {
+  await mainAPI.delete(`event/${id}`);
 }

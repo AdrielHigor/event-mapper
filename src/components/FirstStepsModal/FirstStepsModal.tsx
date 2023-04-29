@@ -20,7 +20,7 @@ const FirstStepsModal = ({
     closeModal={closeModal}
     customClassName={customClassName}
   >
-    <div className="firstSteps">
+    <div className="first-steps">
       <div className="modal-header">
         <h2>Bem Vindo Ao Mapa! 🗺️</h2>
         <p className="description">
@@ -30,15 +30,15 @@ const FirstStepsModal = ({
       </div>
       <div>
         <p className="description">Como Faço Isso? É fácil!</p>
-        <p className="subTitle">Navegar</p>
+        <p className="sub-title">Navegar</p>
         <p>1 - Navegue pelo mapa e poderá ver eventos próximos de você.</p>
         <p>2 - basta clicar em um marcador para ver os detalhes dos eventos.</p>
-        <p className="subTitle">Criar Evento</p>
+        <p className="sub-title">Criar Evento</p>
         <p>1 - Selecione uma localidade do seu gosto e cadastre seu evento;</p>
         <p>2 - Basta clicar no mapa e um popup com formulário irá aparecer;</p>
         <p>3 - Agora basta você preencher o formulário e postar os eventos.</p>
       </div>
-      <button className="exitButton" onClick={closeModal}>
+      <button className="exit-button" onClick={closeModal}>
         {" "}
         Entendido!{" "}
       </button>

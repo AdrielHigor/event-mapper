@@ -10,9 +10,16 @@ interface IMap {
   zoomLevel: number;
   handleMapClick?: (event: GoogleMapReact.ClickEventValue) => void;
   markers?: Array<IEventResponse>;
+  handleMarkerClick: (event: IEventResponse) => void;
 }
 
-const Map = ({ location, zoomLevel, handleMapClick, markers }: IMap) => (
+const Map = ({
+  location,
+  zoomLevel,
+  handleMapClick,
+  handleMarkerClick,
+  markers,
+}: IMap) => (
   <div className="map">
     <div className="google-map">
       <GoogleMapReact
@@ -27,6 +34,7 @@ const Map = ({ location, zoomLevel, handleMapClick, markers }: IMap) => (
             key={marker.id}
             lat={marker.location.point.coordinates[1]}
             lng={marker.location.point.coordinates[0]}
+            onClick={() => handleMarkerClick(marker)}
           />
         ))}
       </GoogleMapReact>

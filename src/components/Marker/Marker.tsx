@@ -1,17 +1,19 @@
 import React from "react";
-import './Marker.css'
+import "./Marker.css";
 
 interface IMarker {
   lat: number;
   lng: number;
+  onClick: () => void;
 }
 
-const Marker = ({ lat, lng }: IMarker) => (
+const Marker = ({ lat, lng, onClick }: IMarker) => (
   <img
     key={`${lat}${lng}`}
     src={require("../../res/images/location-marker.png")}
     alt="Location Marker"
     className="marker"
+    onClick={onClick}
   />
 );
 

@@ -11,12 +11,14 @@ import {
   IEventPost,
   IEventResponse,
 } from "../../utils/interfaces/base";
-import { getAllEvents, postEvent } from "../../api/Event";
+import { deleteEvent, getAllEvents, postEvent } from "../../api/Event";
+import EventDetailsModal from "../../components/EventDetailsModal/EventDetailsModal";
 
 function MapScreen() {
   const [userLocation, setUserLocation] = useState<Coords | null>(null);
   const [showFirstSteps, setShowFirstSteps] = useState<boolean>(true);
   const [showEventForm, setShowEventForm] = useState<boolean>(false);
+  const [showEventDetails, setShowEventDetails] = useState<boolean>(false);
   const [showAddMarkerConfirmation, setShowAddMarkerConfirmation] =
     useState<boolean>(false);
   const [markersPosition, setMarkersPosition] = useState<Array<IEventResponse>>(
@@ -24,6 +26,7 @@ function MapScreen() {
   );
   const [selectedPosition, setSelectedPosition] = useState<Coords>();
   const [eventForm, setEventForm] = useState<IEventForm | undefined>();
+  const [selectedEvent, setSelectedEvent] = useState<IEventResponse>();
 
   const getUserLocation = () => {
     if (navigator?.geolocation) {
@@ -73,6 +76,17 @@ function MapScreen() {
     setShowEventForm(false);
   };
 
+  const handleMarkerClick = (event: IEventResponse) => {
+    setSelectedEvent(event);
+    setShowEventDetails(true);
+  };
+
+  const handleDeleteEvent = async (id: number) => {
+    await deleteEvent(id);
+    getEvents();
+    setShowEventDetails(false);
+  };
+
   const handleCancel = () => {
     setEventForm({});
     setShowEventForm(false);
@@ -89,6 +103,7 @@ function MapScreen() {
       {userLocation ? (
         <Map
           handleMapClick={(event) => handleMapClick(event)}
+          handleMarkerClick={(event) => handleMarkerClick(event)}
           location={userLocation}
           zoomLevel={15}
           markers={markersPosition}
@@ -120,6 +135,12 @@ function MapScreen() {
         onFormChange={(e) => setEventForm(e)}
         onSave={() => handleSaveMarker()}
         onCancel={() => handleCancel()}
+      />
+      <EventDetailsModal
+        modalIsOpen={showEventDetails}
+        closeModal={() => setShowEventDetails(false)}
+        onDelete={(id) => handleDeleteEvent(id)}
+        event={selectedEvent}
       />
     </div>
   );

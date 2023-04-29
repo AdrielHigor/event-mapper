@@ -36,11 +36,11 @@ export interface IEventResponse {
   name: string,
   description: string,
   location: ILocationResponse,
-  startDateTime: Date,
-  endDateTime: Date,
-  createdAt: Date,
-  updatedAt: Date,
-  deletedAt: Date,
+  startDateTime: string,
+  endDateTime: string,
+  createdAt: string,
+  updatedAt: string,
+  deletedAt: string,
 }
 
 export interface IEventPost {
