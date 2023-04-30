@@ -23,8 +23,6 @@ const EventDetailsModal = ({
   const formatDateTime = (date: string) => {
     const dateObj = new Date(date);
 
-    const teste = "oi";
-
     return `${dateObj.getDate().toString().padStart(2, "0")}/${(
       dateObj.getMonth() + 1
     )
