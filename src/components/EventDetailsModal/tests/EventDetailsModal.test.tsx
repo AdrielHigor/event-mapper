@@ -1,15 +1,7 @@
-import React from "react";
 import renderer from "react-test-renderer";
 import EventDetailsModal, { IEventDetailsModal } from "../EventDetailsModal";
-import { IMockModalContainer } from "../../../utils/interfaces/base";
 
 jest.mock("../EventDetailsModal.css", () => ({}));
-jest.mock(
-  "../../ModalContainer/ModalContainer",
-  () =>
-    ({ children }: IMockModalContainer) =>
-      <div>{children}</div>
-);
 
 describe("EventDetailsModal", () => {
   let component: renderer.ReactTestRenderer;

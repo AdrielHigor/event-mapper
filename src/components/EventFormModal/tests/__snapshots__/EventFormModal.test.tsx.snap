@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventFormModal renders correctly 1`] = `
+<div>
+  <div
+    className="event-form"
+  >
+    <div
+      className="modal-header"
+    >
+      <h2>
+        Test Title
+      </h2>
+      <p
+        className="description"
+      >
+        Test Description
+      </p>
+    </div>
+    <div
+      className="form"
+    >
+      <div
+        className="input-container"
+      >
+        <label
+          className="form-label false"
+          htmlFor="name"
+        >
+          Nome do evento *
+        </label>
+        <input
+          className="form-input false"
+          id="name"
+          onChange={[Function]}
+        />
+      </div>
+      <div
+        className="input-container"
+      >
+        <label
+          className="form-label false"
+          htmlFor="description"
+        >
+          Descrição do evento *
+        </label>
+        <input
+          className="form-input false"
+          id="description"
+          onChange={[Function]}
+        />
+      </div>
+      <div
+        className="input-container"
+      >
+        <label
+          className="form-label false"
+          htmlFor="startDateTime"
+        >
+          Data de início do evento
+        </label>
+        <input
+          className="form-input false"
+          id="startDateTime"
+          onChange={[Function]}
+          type="datetime-local"
+        />
+      </div>
+      <div
+        className="input-container"
+      >
+        <label
+          className="form-label false"
+          htmlFor="endDateTime"
+        >
+          Data de fim do evento
+        </label>
+        <input
+          className="form-input false"
+          id="endDateTime"
+          onChange={[Function]}
+          type="datetime-local"
+        />
+      </div>
+    </div>
+    <div
+      className="options"
+    >
+      <button
+        className="confirm-button"
+        onClick={[Function]}
+      >
+        Save
+      </button>
+      <button
+        className="cancel-button"
+        onClick={[MockFunction]}
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+`;

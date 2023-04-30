@@ -136,12 +136,14 @@ function MapScreen() {
         onSave={() => handleSaveMarker()}
         onCancel={() => handleCancel()}
       />
-      <EventDetailsModal
-        modalIsOpen={showEventDetails}
-        closeModal={() => setShowEventDetails(false)}
-        onDelete={(id) => handleDeleteEvent(id)}
-        event={selectedEvent}
-      />
+      {selectedEvent && (
+        <EventDetailsModal
+          modalIsOpen={showEventDetails}
+          closeModal={() => setShowEventDetails(false)}
+          onDelete={(id) => handleDeleteEvent(id)}
+          event={selectedEvent}
+        />
+      )}
     </div>
   );
 }

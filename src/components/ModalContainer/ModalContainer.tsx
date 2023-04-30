@@ -2,7 +2,7 @@ import React from "react";
 import "./ModalContainer.css";
 import Modal from "react-modal";
 
-interface IModalContainer {
+export interface IModalContainer {
   modalIsOpen: boolean;
   closeModal: (
     event: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>

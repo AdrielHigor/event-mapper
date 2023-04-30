@@ -1,7 +1,7 @@
 import React from "react";
 import "./Marker.css";
 
-interface IMarker {
+export interface IMarker {
   lat: number;
   lng: number;
   onClick: () => void;

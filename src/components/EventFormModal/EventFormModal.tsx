@@ -8,7 +8,7 @@ import {
   IEventFormValidation,
 } from "../../utils/interfaces/base";
 
-interface IEventFormModal {
+export interface IEventFormModal {
   modalIsOpen: boolean;
   closeModal: (
     event: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>

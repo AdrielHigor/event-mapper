@@ -1,14 +1,14 @@
 import React from "react";
 import "./Header.css";
 
-interface IHeader {
+export interface IHeader {
   onHelpClick?: () => void;
 }
 
 const Header = ({ onHelpClick }: IHeader) => (
   <div className="header">
     <h2 className="header-h2">Event Mapper</h2>
-    <div className="helpButton" onClick={onHelpClick}>
+    <div className="help-button" onClick={onHelpClick}>
       <span>Ajuda</span>
     </div>
   </div>

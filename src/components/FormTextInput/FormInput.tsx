@@ -1,7 +1,7 @@
 import React from "react";
 import "./FormInput.css";
 
-interface IFormTextInput {
+export interface IFormTextInput {
   label: string;
   id: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;

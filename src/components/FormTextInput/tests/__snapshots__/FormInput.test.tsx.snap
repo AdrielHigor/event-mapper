@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInput renders correctly 1`] = `
+<div
+  className="input-container"
+>
+  <label
+    className="form-label false"
+    htmlFor="test"
+  >
+    test
+  </label>
+  <input
+    className="form-input false"
+    id="test"
+    type="text"
+  />
+</div>
+`;
+
+exports[`FormInput renders correctly with error styling when isValid prop is false 1`] = `
+<div
+  className="input-container"
+>
+  <label
+    className="form-label form-label-error"
+    htmlFor="test"
+  >
+    test
+  </label>
+  <input
+    className="form-input form-input-error"
+    id="test"
+    type="text"
+  />
+  <p
+    className="form-error-text"
+  >
+    Este campo é obrigatório!
+  </p>
+</div>
+`;

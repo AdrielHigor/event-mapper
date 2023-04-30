@@ -5,7 +5,7 @@ import Marker from "../Marker/Marker";
 import constants from "../../utils/Constants";
 import { IEventResponse } from "../../utils/interfaces/base";
 
-interface IMap {
+export interface IMap {
   location: GoogleMapReact.Coords;
   zoomLevel: number;
   handleMapClick?: (event: GoogleMapReact.ClickEventValue) => void;

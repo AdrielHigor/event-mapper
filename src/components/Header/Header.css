@@ -8,11 +8,11 @@
   padding: 0px 15px;
 }
 
-.helpButton {
+.help-button {
   font-weight: bold;
 }
 
-.helpButton:hover {
+.help-button:hover {
   cursor: pointer;
   color: #bebebe;
 }

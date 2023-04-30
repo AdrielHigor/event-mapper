@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Marker should render correctly 1`] = `
+<div
+  className="header"
+>
+  <h2
+    className="header-h2"
+  >
+    Event Mapper
+  </h2>
+  <div
+    className="help-button"
+    onClick={[MockFunction]}
+  >
+    <span>
+      Ajuda
+    </span>
+  </div>
+</div>
+`;

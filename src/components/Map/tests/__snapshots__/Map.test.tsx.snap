@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Marker should render correctly 1`] = `
+<div
+  className="map"
+>
+  <div
+    className="google-map"
+  >
+    <div>
+      <img
+        alt="Location Marker"
+        className="marker"
+        onClick={[Function]}
+        src="mockImage"
+      />
+      <img
+        alt="Location Marker"
+        className="marker"
+        onClick={[Function]}
+        src="mockImage"
+      />
+    </div>
+  </div>
+</div>
+`;
