@@ -42,7 +42,10 @@ function MapScreen() {
 
   const getEvents = async () => {
     const events = await getAllEvents();
-    setMarkersPosition(events.data);
+
+    if (events) {
+      setMarkersPosition(events.data);
+    }
   };
 
   const handleMapClick = (event: ClickEventValue) => {

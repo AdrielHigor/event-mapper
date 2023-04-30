@@ -1,4 +1,4 @@
-import renderer from "react-test-renderer";
+import renderer, { act } from "react-test-renderer";
 import EventFormModal, { IEventFormModal } from "../EventFormModal";
 
 describe("EventFormModal", () => {
@@ -48,10 +48,12 @@ describe("EventFormModal", () => {
       onSave: onSaveMock,
     });
 
-    const saveButton = component.root.findByProps({
-      className: "confirm-button",
+    act(() => {
+      const saveButton = component.root.findByProps({
+        className: "confirm-button",
+      });
+      saveButton.props.onClick();
     });
-    saveButton.props.onClick();
     expect(onSaveMock).toHaveBeenCalled();
   });
 
@@ -86,10 +88,13 @@ describe("EventFormModal", () => {
       onSave: onSaveMock,
     });
 
-    const saveButton = component.root.findByProps({
-      className: "confirm-button",
+    act(() => {
+      const saveButton = component.root.findByProps({
+        className: "confirm-button",
+      });
+      saveButton.props.onClick();
     });
-    saveButton.props.onClick();
+
     expect(onSaveMock).not.toHaveBeenCalled();
   });
 
