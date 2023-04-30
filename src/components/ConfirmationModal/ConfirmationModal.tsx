@@ -34,7 +34,7 @@ const ConfirmationModal = ({
   >
     <div className="confirmation-container">
       <div className="modal-header">
-        <h2>{title}</h2>
+        <h2 className="modal-header-title">{title}</h2>
         <p className="description">{description}</p>
       </div>
       <div className="options">
