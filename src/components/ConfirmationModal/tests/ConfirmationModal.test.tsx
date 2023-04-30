@@ -1,16 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import ConfirmationModal from "../ConfirmationModal";
-
-interface IMock {
-  children: React.ReactNode;
-}
+import { IMockModalContainer } from "../../../utils/interfaces/base";
 
 jest.mock("../ConfirmationModal.css", () => ({}));
 jest.mock(
   "../../ModalContainer/ModalContainer",
   () =>
-    ({ children }: IMock) =>
+    ({ children }: IMockModalContainer) =>
       <div>{children}</div>
 );
 

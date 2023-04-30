@@ -3,13 +3,13 @@ import "./EventDetailsModal.css";
 import ModalContainer from "../ModalContainer/ModalContainer";
 import { IEventResponse } from "../../utils/interfaces/base";
 
-interface IEventDetailsModal {
+export interface IEventDetailsModal {
   modalIsOpen: boolean;
   closeModal: (
     event: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
   ) => void;
   customClassName?: string;
-  event?: IEventResponse;
+  event: IEventResponse;
   onDelete: (id: number) => void;
 }
 
@@ -41,7 +41,7 @@ const EventDetailsModal = ({
     >
       <div className="first-steps">
         <div className="modal-header">
-          <h2>{event?.name}</h2>
+          <h2 className="modal-header-title">{event?.name}</h2>
           <p className="description">{event?.description}</p>
         </div>
         <div>
@@ -64,7 +64,7 @@ const EventDetailsModal = ({
           </button>
           <button
             className="cancel-button"
-            onClick={(e) => (event ? onDelete(event.id) : closeModal(e))}
+            onClick={() => onDelete(event.id)}
           >
             Deletar
           </button>

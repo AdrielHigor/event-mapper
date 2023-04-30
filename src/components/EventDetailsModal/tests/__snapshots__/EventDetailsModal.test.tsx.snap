@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventDetailsModal should render correctly 1`] = `
+<div>
+  <div
+    className="first-steps"
+  >
+    <div
+      className="modal-header"
+    >
+      <h2
+        className="modal-header-title"
+      >
+        Test event
+      </h2>
+      <p
+        className="description"
+      >
+        Test description
+      </p>
+    </div>
+    <div>
+      <div>
+        <p
+          className="sub-title"
+        >
+          Data e Hora Inicial
+        </p>
+        <p>
+          01/05/2023 às 12:00
+        </p>
+      </div>
+      <div>
+        <p
+          className="sub-title"
+        >
+          Data e Hora Final
+        </p>
+        <p>
+          01/05/2023 às 14:00
+        </p>
+      </div>
+    </div>
+    <div
+      className="options"
+    >
+      <button
+        className="confirm-button"
+        onClick={[MockFunction]}
+      >
+        Concluir!
+      </button>
+      <button
+        className="cancel-button"
+        onClick={[Function]}
+      >
+        Deletar
+      </button>
+    </div>
+  </div>
+</div>
+`;

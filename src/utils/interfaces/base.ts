@@ -53,3 +53,7 @@ export interface IEventPost {
     lng: number,
   }
 }
+
+export interface IMockModalContainer {
+  children: React.ReactNode;
+}
