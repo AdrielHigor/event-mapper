@@ -52,6 +52,16 @@ const EventFormModal = ({
     onFormChange(updatedObj);
   };
 
+  const handleSave = (validatedFields: DynamicObject) => {
+    let field;
+
+    for (field in validatedFields) {
+      if (validatedFields[field] === false) return;
+    }
+
+    onSave();
+  };
+
   const handleValidation = () => {
     const validatedFields: DynamicObject = { ...formValidFields };
     const formObj: DynamicObject = { ...form };
@@ -68,14 +78,6 @@ const EventFormModal = ({
     }
 
     handleSave(validatedFields);
-  };
-
-  const handleSave = (validatedFields: DynamicObject) => {
-    for (let field in validatedFields) {
-      if (validatedFields[field] === false) return;
-    }
-
-    onSave();
   };
 
   return (

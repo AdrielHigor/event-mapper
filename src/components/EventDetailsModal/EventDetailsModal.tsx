@@ -21,8 +21,9 @@ const EventDetailsModal = ({
   onDelete,
 }: IEventDetailsModal) => {
   const formatDateTime = (date: string) => {
-    console.log(date);
     const dateObj = new Date(date);
+
+    const teste = "oi";
 
     return `${dateObj.getDate().toString().padStart(2, "0")}/${(
       dateObj.getMonth() + 1
